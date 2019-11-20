@@ -1,0 +1,41 @@
+{
+    "office": {
+        "medical": [
+            {
+                "price": "$$$$$$",
+                "room-number": 100,
+                "sq-ft": 50,
+                "use": "reception"
+            },
+            {
+                "price": 75,
+                "room-number": 101,
+                "sq-ft": 250,
+                "use": "waiting"
+            },
+            {
+                "price": 150,
+                "room-number": 102,
+                "sq-ft": 125,
+                "use": "examination"
+            },
+            {
+                "price": 150,
+                "room-number": 103,
+                "sq-ft": "$$$$$$",
+                "use": "examination"
+            },
+            {
+                "price": 100,
+                "room-number": 104,
+                "sq-ft": 150,
+                "use": "office"
+            }
+        ],
+        "parking": {
+            "location": "premium",
+            "price": 750,
+            "style": "$$$$$$"
+        }
+    }
+}
