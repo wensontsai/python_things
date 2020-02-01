@@ -29,7 +29,17 @@ for file in glob.glob(os.path.join(path, '*.json')):
                 text = data.get('body')
 
                 # use regex to parse sections into json
+                sections = []
+                # (1) use regex to parse into sections.
                 
+                # PER Section.
+                for section in sections:
+                    # (2) Regex title
+
+                    # (3) Regex Section content
+
+                    # Save to parsed_data
+                    # parsed_data.set(title, section_content)
 
             # Save and close to same file.
             with open(output_file, 'w') as json_file:
