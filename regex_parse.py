@@ -1,23 +1,22 @@
 import os
 import glob
 import json
+import re
 
 # Get root paths.
-curr_root = os.getcwd()
-# print(curr_root)
+path = os.getcwd()
 
-# Result.
+# Result file.
 output_file = "sanitized.json"
-
-# Can define path further.
-path = curr_root
 
 # Open every JSON file in path
 for file in glob.glob(os.path.join(path, '*.json')):
+
+    # Find file.
     if file.split("/")[-1] == "transcripts_block.json":
         print("found: ", file.split("/")[-1])
 
-        # output
+        # Output dict.
         parsed_data = {}
 
         try:
@@ -25,26 +24,27 @@ for file in glob.glob(os.path.join(path, '*.json')):
             with open(file, 'r') as json_file:
                 data = json.load(json_file)
 
-                # get body text
+                # Get body text
                 text = data.get('body')
 
-                # use regex to parse sections into json
-                sections = []
                 # (1) use regex to parse into sections.
-                
-                # PER Section.
-                for section in sections:
-                    # (2) Regex title
+                result = re.findall(r'\n(.*?)\n', text)
 
-                    # (3) Regex Section content
+                # a. Remove "=============" header breaker (assuming it is first element)
+                result.pop(0)
 
-                    # Save to parsed_data
-                    # parsed_data.set(title, section_content)
+                # b. convert to pairs as tuples
+                paired_result = zip(result[0::2], result[1::2])
 
-            # Save and close to same file.
+                # Parse data per section into JSON.
+                for tuple in paired_result:
+                    # Save every pair (assuming they are paired correctly)
+                    parsed_data[tuple[0]] = tuple[1]
+
+            # Save out to file.
             with open(output_file, 'w') as json_file:
                 json.dump(parsed_data, json_file, indent=4, sort_keys=True)
-
+                print("file saved to: ", path +  "/" +output_file)
 
         except Exception as e:
             raise e
