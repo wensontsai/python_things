@@ -29,7 +29,7 @@ for file in glob.glob(os.path.join(path, '*.json')):
 
                 # (1) use regex to parse into sections.
                 result = re.findall(r'\n(.*?)\n', text)
-
+                print(result)
                 # a. Remove "=============" header breaker (assuming it is first element)
                 result.pop(0)
 
